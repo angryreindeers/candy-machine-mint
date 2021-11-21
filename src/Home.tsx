@@ -179,6 +179,7 @@ const Home = (props: HomeProps) => {
   return (
     <main
       style={{
+        background:"#ffdf5f",
         display: "flex",
         flexDirection: "column",
         height: "100vh",
@@ -186,7 +187,7 @@ const Home = (props: HomeProps) => {
     >
                 
     <div style={{
-      backgroundColor: "white",
+      backgroundColor: "#ffdf5f",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -194,7 +195,7 @@ const Home = (props: HomeProps) => {
     }}>  
       <h2 style={{
         fontFamily: "Oswald",
-        background: "",
+        background: "#ffdf5f",
         color: "black", 
         fontSize: "13vh",
         margin: 0,
@@ -204,7 +205,7 @@ const Home = (props: HomeProps) => {
 
     <div
       style={{
-        backgroundColor: "white",
+        backgroundColor: "",
         flex: 1,
         display: "flex",
         flexDirection: "column",
@@ -222,7 +223,9 @@ const Home = (props: HomeProps) => {
       <p style={{color: "black", fontWeight: "bold", fontSize: "20px", margin: 15, marginTop: 0}}>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
       )}
 
-      {wallet && <p style={{color: "black", fontWeight: "bold", fontSize: "20px", margin: 0}}>Minted: {itemsRemaining} / {itemsAvailable}</p>}
+      {wallet && <p style={{color: "black", fontWeight: "bold", fontSize: "20px", margin: 0}}>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+
+      {wallet && <p style={{color: "black", fontWeight: "bold", fontSize: "20px", margin: 15}}>Minted: {itemsRedeemed} / {itemsAvailable}</p>}
 
       <MintContainer>
 
@@ -234,7 +237,7 @@ const Home = (props: HomeProps) => {
           color: "black",
           padding: "5px 25px",
           margin: 15,
-          borderRadius: 50
+          borderRadius: 50,
         }}>Connect Wallet</ConnectButton>
       ) : (
         <MintButton

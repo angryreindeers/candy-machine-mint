@@ -7,7 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #303030;
   color: #FFFFFF;
-}
+  cursor: url('./c.ico'), auto;
+  }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
