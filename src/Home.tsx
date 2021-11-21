@@ -11,6 +11,9 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 
+import gif from './reindeer.gif'
+import WebFont from 'webfontloader';
+
 import {
   CandyMachine,
   awaitTransactionSignatureConfirmation,
@@ -165,62 +168,130 @@ const Home = (props: HomeProps) => {
     props.connection,
   ]);
 
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Mochiy Pop P One, Oswald']
+      }
+    });
+   }, []);
+
   return (
-    <main>
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+      }} 
+    >
+                
+    <div style={{
+      backgroundColor: "white",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      height: "16.4vh"
+    }}>  
+      <h2 style={{
+        fontFamily: "Oswald",
+        background: "",
+        color: "black", 
+        fontSize: "13vh",
+        margin: 0,
+        
+        }}>Angry Reindeers</h2>
+    </div>
+
+    <div
+      style={{
+        backgroundColor: "white",
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        verticalAlign: "text-top",
+      }}
+    >
+      <img src={gif} alt="" style={{
+        height: "43vh",
+        padding: "5vh"
+      }}/>
+      
       {wallet && (
-        <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
+
+      <p style={{color: "black", fontWeight: "bold", fontSize: "20px", margin: 15, marginTop: 0}}>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
       )}
 
-      {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
-
-      {wallet && <p>Total Available: {itemsAvailable}</p>}
-
-      {wallet && <p>Redeemed: {itemsRedeemed}</p>}
-
-      {wallet && <p>Remaining: {itemsRemaining}</p>}
+      {wallet && <p style={{color: "black", fontWeight: "bold", fontSize: "20px", margin: 0}}>Minted: {itemsRemaining} / {itemsAvailable}</p>}
 
       <MintContainer>
-        {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
-        ) : (
-          <MintButton
-            disabled={isSoldOut || isMinting || !isActive}
-            onClick={onMint}
-            variant="contained"
-          >
-            {isSoldOut ? (
-              "SOLD OUT"
-            ) : isActive ? (
-              isMinting ? (
-                <CircularProgress />
-              ) : (
-                "MINT"
-              )
+
+      {!wallet ? (          
+        <ConnectButton style={{
+          fontSize: "3vh",
+          background: "#C2FACD",
+          fontWeight: "bold",
+          color: "black",
+          padding: "5px 25px",
+          margin: 15,
+          borderRadius: 50
+        }}>Connect Wallet</ConnectButton>
+      ) : (
+        <MintButton
+          disabled={isSoldOut || isMinting || !isActive}
+          onClick={onMint}
+          variant="contained"
+          style={{
+            fontSize: "3vh",
+            background: "#C2FACD",
+            fontWeight: "bold",
+            color: "black",
+            padding: "5px 25px",
+            margin: 30,
+            borderRadius: 50
+          }}
+        >
+          {isSoldOut ? (
+            "SOLD OUT"
+          ) : isActive ? (
+            isMinting ? (
+              <CircularProgress />
             ) : (
-              <Countdown
-                date={startDate}
-                onMount={({ completed }) => completed && setIsActive(true)}
-                onComplete={() => setIsActive(true)}
-                renderer={renderCounter}
-              />
-            )}
-          </MintButton>
-        )}
+              "MINT"
+            )
+          ) : (
+            <Countdown
+              date={startDate}
+              onMount={({ completed }) => completed && setIsActive(true)}
+              onComplete={() => setIsActive(true)}
+              renderer={renderCounter}
+            />
+          )}
+        </MintButton>
+      )}
       </MintContainer>
 
+    </div>
+     
       <Snackbar
         open={alertState.open}
-        autoHideDuration={6000}
+        autoHideDuration={5000}
         onClose={() => setAlertState({ ...alertState, open: false })}
       >
-        <Alert
+        <Alert style={{
+          fontSize: "20px",
+          fontWeight: "bold",
+          borderRadius: 15
+        }}
           onClose={() => setAlertState({ ...alertState, open: false })}
           severity={alertState.severity}
         >
           {alertState.message}
         </Alert>
       </Snackbar>
+    
     </main>
+    
   );
 };
 
