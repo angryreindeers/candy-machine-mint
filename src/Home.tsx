@@ -11,7 +11,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 
-import gif from './reindeer.gif'
+import gif from './santas.gif'
 import WebFont from 'webfontloader';
 
 import {
@@ -171,7 +171,7 @@ const Home = (props: HomeProps) => {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ['Mochiy Pop P One, Oswald']
+        families: ['Mochiy Pop P One, Oswald, Reklame Script']
       }
     });
    }, []);
@@ -179,7 +179,7 @@ const Home = (props: HomeProps) => {
   return (
     <main
       style={{
-        background:"#ffdf5f",
+        background:"#DCA3F1",
         display: "flex",
         flexDirection: "column",
         height: "100vh",
@@ -187,7 +187,7 @@ const Home = (props: HomeProps) => {
     >
                 
     <div style={{
-      backgroundColor: "#ffdf5f",
+      backgroundColor: "#DCA3F1",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -195,12 +195,12 @@ const Home = (props: HomeProps) => {
     }}>  
       <h2 style={{
         fontFamily: "Oswald",
-        background: "#ffdf5f",
+        background: "#DCA3F1",
         color: "black", 
         fontSize: "13vh",
         margin: 0,
         
-        }}>Angry Reindeers</h2>
+        }}>Evil Santas</h2>
     </div>
 
     <div
